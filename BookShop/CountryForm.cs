@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace BookShop
+{
+    public partial class CountryForm : Form
+    {
+        private DBconnect DBconnect;
+        public CountryForm()
+        {
+            InitializeComponent();
+            DBconnect = new DBconnect();
+
+            LoadData();
+        }
+        public List<Country> GetCountries()
+        {
+            return DBconnect.ReadData<Country>(reader => new Country(reader), "Countries");
+        }
+        private void LoadData()
+        {
+            List<Country> countries = DBconnect.ReadData<Country>(reader => new Country(reader), "Countries");
+            dataGridView1.DataSource = countries;
+            clearText();
+        }
+        private void Insert_button_Click(object sender, EventArgs e)
+        {
+            if(Validation(out string name))
+            {
+                Country country = new Country()
+                {
+                    Name = name
+                };
+                DBconnect.InsertData(country, "Countries", new[] { "Id" });
+                LoadData();
+            }
+        }
+
+        private void Update_button_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select a row to update)");
+                return;
+            }
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            if(Validation(out string name))
+            {
+                Country country = new Country()
+                {
+                    Id = Convert.ToInt32(row.Cells["Id"].Value),
+                    Name = name
+                };
+
+                DBconnect.UpdateData(country, "Countries", "Id");
+                LoadData();
+            }
+        }
+
+        private void Delete_button_Click(object sender, EventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select a row to delete");
+                return;
+            }
+            var confirm = MessageBox.Show("Are you sure you want to delete this record?", "Confirm Deletion", 
+                                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(confirm == DialogResult.Yes)
+            {
+                var row = dataGridView1.SelectedRows[0];
+                int value = Convert.ToInt32(row.Cells["Id"].Value);
+
+                DBconnect.DeleteData("Countries", "Id", value);
+
+                LoadData();
+            }
+        }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            Input_name.Text = string.Empty;
+        }
+        private void clearText()
+        {
+            Input_name.Text = string.Empty;
+        }
+        private bool Validation(out string name)
+        {
+            // Initialize the output variable
+            name = Input_name.Text;
+            bool isValid = true;
+
+            // Validate that Name is not null or empty
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Name cannot be empty.");
+                isValid = false;
+            }
+            else
+            {
+                // Check for uniqueness of the Name (assuming DBconnect has a method to check for existing names)
+                List<string> existingNames = DBconnect.ReadData<string>(reader => reader["Name"].ToString(), "Countries");
+
+                if (existingNames.Contains(name))
+                {
+                    MessageBox.Show("Name must be unique.");
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+    }
+}
