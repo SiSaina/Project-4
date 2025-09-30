@@ -1,0 +1,136 @@
+-- Create Database
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'BookShop')
+BEGIN
+    CREATE DATABASE BookShop;
+END
+GO
+
+USE BookShop;
+GO
+
+-- Country Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Countries' AND xtype='U')
+BEGIN
+    CREATE TABLE Countries (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Name NVARCHAR(100) NOT NULL UNIQUE
+    );
+END
+GO
+
+-- Theme Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Themes' AND xtype='U')
+BEGIN
+    CREATE TABLE Themes (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Name NVARCHAR(100) NOT NULL UNIQUE
+    );
+END
+GO
+
+-- Shop Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Shops' AND xtype='U')
+BEGIN
+    CREATE TABLE Shops (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Name NVARCHAR(200) NOT NULL,
+        CountryId INT NOT NULL,
+        FOREIGN KEY (CountryId) REFERENCES Countries(Id)
+    );
+END
+GO
+
+-- Author Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Authors' AND xtype='U')
+BEGIN
+    CREATE TABLE Authors (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Name NVARCHAR(100) NOT NULL,
+        Surname NVARCHAR(100) NOT NULL,
+        CountryId INT NOT NULL,
+        FOREIGN KEY (CountryId) REFERENCES Countries(Id)
+    );
+END
+GO
+
+-- Book Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Books' AND xtype='U')
+BEGIN
+    CREATE TABLE Books (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Name NVARCHAR(200) NOT NULL,
+        Pages INT NOT NULL,
+        Price DECIMAL(10,2) NOT NULL,
+        PublishDate DATE NOT NULL,
+        AuthorId INT NOT NULL,
+        ThemeId INT NOT NULL,
+        FOREIGN KEY (AuthorId) REFERENCES Authors(Id),
+        FOREIGN KEY (ThemeId) REFERENCES Themes(Id)
+    );
+END
+GO
+
+-- Sale Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Sales' AND xtype='U')
+BEGIN
+    CREATE TABLE Sales (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Price DECIMAL(10,2) NOT NULL,
+        Quantity INT NOT NULL,
+        SaleDate DATE NOT NULL,
+        BookId INT NOT NULL,
+        ShopId INT NOT NULL,
+        FOREIGN KEY (BookId) REFERENCES Books(Id),
+        FOREIGN KEY (ShopId) REFERENCES Shops(Id)
+    );
+END
+GO
+
+-- Insert Countries
+INSERT INTO Countries (Name) VALUES
+('USA'),
+('UK'),
+('Canada'),
+('France'),
+('Japan');
+
+-- Insert Themes
+INSERT INTO Themes (Name) VALUES
+('Science Fiction'),
+('Romance'),
+('History'),
+('Technology'),
+('Fantasy');
+
+-- Insert Authors
+INSERT INTO Authors (Name, Surname, CountryId) VALUES
+('John', 'Smith', 1),   -- USA
+('Emily', 'Clark', 2),  -- UK
+('Alex', 'Johnson', 3), -- Canada
+('Marie', 'Dubois', 4), -- France
+('Hiroshi', 'Tanaka', 5); -- Japan
+
+-- Insert Shops
+INSERT INTO Shops (Name, CountryId) VALUES
+('BookWorld USA', 1),
+('London Books', 2),
+('Maple Leaf Books', 3),
+('Paris Reads', 4),
+('Tokyo Story', 5);
+
+-- Insert Books
+INSERT INTO Books (Name, Pages, Price, PublishDate, AuthorId, ThemeId) VALUES
+('Stars Beyond', 320, 19.99, '2021-05-12', 1, 1),
+('Love in London', 250, 14.50, '2020-08-22', 2, 2),
+('History of Canada', 450, 29.99, '2019-11-10', 3, 3),
+('AI Revolution', 380, 34.95, '2022-02-15', 1, 4),
+('Samurai Legends', 520, 24.99, '2018-07-30', 5, 5);
+
+-- Insert Sales
+INSERT INTO Sales (Price, Quantity, SaleDate, BookId, ShopId) VALUES
+(19.99, 3, '2023-01-15', 1, 1),
+(14.50, 2, '2023-02-05', 2, 2),
+(29.99, 1, '2023-03-10', 3, 3),
+(34.95, 4, '2023-04-22', 4, 1),
+(24.99, 5, '2023-05-18', 5, 5);
+

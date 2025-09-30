@@ -10,14 +10,36 @@ namespace BookShop
 {
     public class DBconnect
     {
-        string connection = @"data source=DESKTOP-60IU26R\SQLSERVERDEV;database=BookShop;integrated security=true;";
-        public SqlConnection GetDBConnection()
+        string connection = @"data source=LAPTOP-I65UB9QR\SQLSERVERDEV;database=BookShop;integrated security=true;";
+        private static string DatabaseName = "BookShop";
+        private static string DbConnection = $@"data source=LAPTOP-I65UB9QR\SQLSERVERDEV;database={DatabaseName};integrated security=true;";
+
+        public DBconnect()
         {
-            SqlConnection conn = new SqlConnection(connection);
-            conn.Open();
-            return conn;
+            EnsureDatabaseExists();
         }
 
+        private void EnsureDatabaseExists()
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                string checkDb = $"IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'{DatabaseName}') " +
+                                 $"CREATE DATABASE [{DatabaseName}]";
+
+                using (SqlCommand cmd = new SqlCommand(checkDb, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public SqlConnection GetDBConnection()
+        {
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            sqlConnection.Open();
+            return sqlConnection;
+        }
         public List<T> ReadData<T>(Func<SqlDataReader, T> func, string tableName) 
         {
             List<T> list = new List<T>();
@@ -37,10 +59,7 @@ namespace BookShop
             }
             finally
             {
-                if (sqlConnection != null)
-                {
-                    sqlConnection.Close();
-                }
+                sqlConnection?.Close();
             }
             return list;
         }
@@ -74,10 +93,7 @@ namespace BookShop
             }
             finally
             {
-                if (sqlConnection != null)
-                {
-                    sqlConnection.Close();
-                }
+                sqlConnection?.Close();
             }
         }
 
@@ -114,8 +130,7 @@ namespace BookShop
             }
             finally 
             {
-                if (sqlConnection != null)
-                    sqlConnection.Close();
+                sqlConnection?.Close();
             }
         }
 
@@ -136,8 +151,7 @@ namespace BookShop
             }
             finally
             {
-                if(sqlConnection != null)
-                    sqlConnection.Close();
+                sqlConnection?.Close();
             }
         }
     }
