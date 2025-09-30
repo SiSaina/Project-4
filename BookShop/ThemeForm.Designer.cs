@@ -42,9 +42,10 @@
             // 
             // Delete_button
             // 
-            this.Delete_button.Location = new System.Drawing.Point(687, 400);
+            this.Delete_button.Location = new System.Drawing.Point(916, 492);
+            this.Delete_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Delete_button.Name = "Delete_button";
-            this.Delete_button.Size = new System.Drawing.Size(100, 30);
+            this.Delete_button.Size = new System.Drawing.Size(133, 37);
             this.Delete_button.TabIndex = 17;
             this.Delete_button.Text = "Delete";
             this.Delete_button.UseVisualStyleBackColor = true;
@@ -52,9 +53,10 @@
             // 
             // Update_button
             // 
-            this.Update_button.Location = new System.Drawing.Point(581, 400);
+            this.Update_button.Location = new System.Drawing.Point(775, 492);
+            this.Update_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Update_button.Name = "Update_button";
-            this.Update_button.Size = new System.Drawing.Size(100, 30);
+            this.Update_button.Size = new System.Drawing.Size(133, 37);
             this.Update_button.TabIndex = 16;
             this.Update_button.Text = "Update";
             this.Update_button.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // 
             // Insert_button
             // 
-            this.Insert_button.Location = new System.Drawing.Point(475, 400);
+            this.Insert_button.Location = new System.Drawing.Point(633, 492);
+            this.Insert_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Insert_button.Name = "Insert_button";
-            this.Insert_button.Size = new System.Drawing.Size(100, 30);
+            this.Insert_button.Size = new System.Drawing.Size(133, 37);
             this.Insert_button.TabIndex = 15;
             this.Insert_button.Text = "Insert";
             this.Insert_button.UseVisualStyleBackColor = true;
@@ -72,9 +75,10 @@
             // 
             // Clear_button
             // 
-            this.Clear_button.Location = new System.Drawing.Point(369, 400);
+            this.Clear_button.Location = new System.Drawing.Point(492, 492);
+            this.Clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Clear_button.Name = "Clear_button";
-            this.Clear_button.Size = new System.Drawing.Size(100, 30);
+            this.Clear_button.Size = new System.Drawing.Size(133, 37);
             this.Clear_button.TabIndex = 14;
             this.Clear_button.Text = "Clear";
             this.Clear_button.UseVisualStyleBackColor = true;
@@ -83,48 +87,55 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 47);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(775, 330);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1033, 406);
             this.dataGridView1.TabIndex = 13;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(643, 377);
+            this.label2.Location = new System.Drawing.Point(857, 464);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(47, 16);
             this.label2.TabIndex = 12;
             this.label2.Text = "Name:";
             // 
             // Input_name
             // 
-            this.Input_name.Location = new System.Drawing.Point(687, 374);
+            this.Input_name.Location = new System.Drawing.Point(916, 460);
+            this.Input_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Input_name.Name = "Input_name";
-            this.Input_name.Size = new System.Drawing.Size(100, 20);
+            this.Input_name.Size = new System.Drawing.Size(132, 22);
             this.Input_name.TabIndex = 11;
             // 
             // Input_search
             // 
-            this.Input_search.Location = new System.Drawing.Point(687, 12);
+            this.Input_search.Location = new System.Drawing.Point(916, 15);
+            this.Input_search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Input_search.Name = "Input_search";
-            this.Input_search.Size = new System.Drawing.Size(100, 20);
+            this.Input_search.Size = new System.Drawing.Size(132, 22);
             this.Input_search.TabIndex = 10;
+            this.Input_search.TextChanged += new System.EventHandler(this.Input_search_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(637, 15);
+            this.label1.Location = new System.Drawing.Point(849, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.Size = new System.Drawing.Size(53, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "Search:";
             // 
             // ThemeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 442);
+            this.ClientSize = new System.Drawing.Size(1065, 544);
             this.Controls.Add(this.Delete_button);
             this.Controls.Add(this.Update_button);
             this.Controls.Add(this.Insert_button);
@@ -135,6 +146,7 @@
             this.Controls.Add(this.Input_search);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ThemeForm";
             this.Text = "Theme";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -13,12 +13,17 @@ namespace BookShop
     public partial class SaleForm : Form
     {
         DBconnect DBconnect;
+        private List<Sale> allSales => new SaleForm().GetSale();
         public SaleForm()
         {
             InitializeComponent();
             DBconnect = new DBconnect();
 
             LoadData();
+        }
+        private List<Sale> GetSale()
+        {
+            return DBconnect.ReadData<Sale>(reader => new Sale(reader), "Sales");
         }
         private void LoadData()
         {
@@ -180,6 +185,17 @@ namespace BookShop
             }
 
             return isValid;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dateTimePicker1.Value.Date;
+
+            var filtered = allSales
+                .Where(a => a.SaleDate.Date == selectedDate)
+                .ToList();
+
+            dataGridView1.DataSource = filtered;
         }
     }
 }

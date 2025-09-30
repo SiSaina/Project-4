@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BookShop
@@ -7,6 +8,8 @@ namespace BookShop
     public partial class AuthorForm : Form
     {
         DBconnect DBconnect;
+        private List<Author> allAuthors => GetAuthors();
+        private List<Country> allCountries => new CountryForm().GetCountries();
         public AuthorForm()
         {
             InitializeComponent();
@@ -56,14 +59,8 @@ namespace BookShop
                 return;
             }
 
-            var confirm = MessageBox.Show("Did you select the date correctly?", "Confirm update",
-                                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-            {
-                return;
-            }
-
             DataGridViewRow row = dataGridView1.SelectedRows[0];
+
             if (Validation(out string name, out string surname, out Country selectedCountry))
             {
                 Author author = new Author()
@@ -145,6 +142,43 @@ namespace BookShop
             }
 
             return isValid;
+        }
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            // Fill input fields
+            Input_name.Text = row.Cells["Name"].Value?.ToString();
+            Input_surname.Text = row.Cells["Surname"].Value?.ToString();
+
+            int countryId = Convert.ToInt32(row.Cells["CountryId"].Value);
+            Select_country.SelectedValue = countryId; // works reliably
+        }
+
+        private void Input_search_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = Input_search.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                dataGridView1.DataSource = allAuthors;
+            }
+            else
+            {
+                if (searchText.Length > 5)
+                    searchText = searchText.Substring(0, 5);
+
+                var filtered = allAuthors
+                    .Where(a =>
+                        (!string.IsNullOrEmpty(a.Name) && a.Name.ToLower().StartsWith(searchText)) ||
+                        (!string.IsNullOrEmpty(a.Surname) && a.Surname.ToLower().StartsWith(searchText)))
+                    .ToList();
+
+                dataGridView1.DataSource = filtered;
+            }
         }
 
     }

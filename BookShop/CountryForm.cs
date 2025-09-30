@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BookShop
@@ -7,6 +8,7 @@ namespace BookShop
     public partial class CountryForm : Form
     {
         private DBconnect DBconnect;
+        private List<Country> allCountries => GetCountries();
         public CountryForm()
         {
             InitializeComponent();
@@ -115,5 +117,27 @@ namespace BookShop
             return isValid;
         }
 
+        private void Input_search_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = Input_search.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                dataGridView1.DataSource = allCountries;
+            }
+            else
+            {
+                if (searchText.Length > 3)
+                    searchText = searchText.Substring(0, 3);
+
+                var filtered = allCountries
+                    .Where(a =>
+                        !string.IsNullOrEmpty(a.Name) &&
+                        a.Name.ToLower().StartsWith(searchText))
+                    .ToList();
+
+                dataGridView1.DataSource = filtered;
+            }
+        }
     }
 }

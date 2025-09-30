@@ -46,9 +46,10 @@
             // 
             // Delete_button
             // 
-            this.Delete_button.Location = new System.Drawing.Point(687, 400);
+            this.Delete_button.Location = new System.Drawing.Point(916, 492);
+            this.Delete_button.Margin = new System.Windows.Forms.Padding(4);
             this.Delete_button.Name = "Delete_button";
-            this.Delete_button.Size = new System.Drawing.Size(100, 30);
+            this.Delete_button.Size = new System.Drawing.Size(133, 37);
             this.Delete_button.TabIndex = 26;
             this.Delete_button.Text = "Delete";
             this.Delete_button.UseVisualStyleBackColor = true;
@@ -56,9 +57,10 @@
             // 
             // Update_button
             // 
-            this.Update_button.Location = new System.Drawing.Point(581, 400);
+            this.Update_button.Location = new System.Drawing.Point(775, 492);
+            this.Update_button.Margin = new System.Windows.Forms.Padding(4);
             this.Update_button.Name = "Update_button";
-            this.Update_button.Size = new System.Drawing.Size(100, 30);
+            this.Update_button.Size = new System.Drawing.Size(133, 37);
             this.Update_button.TabIndex = 25;
             this.Update_button.Text = "Update";
             this.Update_button.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             // Insert_button
             // 
-            this.Insert_button.Location = new System.Drawing.Point(475, 400);
+            this.Insert_button.Location = new System.Drawing.Point(633, 492);
+            this.Insert_button.Margin = new System.Windows.Forms.Padding(4);
             this.Insert_button.Name = "Insert_button";
-            this.Insert_button.Size = new System.Drawing.Size(100, 30);
+            this.Insert_button.Size = new System.Drawing.Size(133, 37);
             this.Insert_button.TabIndex = 24;
             this.Insert_button.Text = "Insert";
             this.Insert_button.UseVisualStyleBackColor = true;
@@ -76,9 +79,10 @@
             // 
             // Clear_button
             // 
-            this.Clear_button.Location = new System.Drawing.Point(369, 400);
+            this.Clear_button.Location = new System.Drawing.Point(492, 492);
+            this.Clear_button.Margin = new System.Windows.Forms.Padding(4);
             this.Clear_button.Name = "Clear_button";
-            this.Clear_button.Size = new System.Drawing.Size(100, 30);
+            this.Clear_button.Size = new System.Drawing.Size(133, 37);
             this.Clear_button.TabIndex = 23;
             this.Clear_button.Text = "Clear";
             this.Clear_button.UseVisualStyleBackColor = true;
@@ -87,81 +91,93 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 47);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(775, 330);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1033, 406);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(620, 378);
+            this.label2.Location = new System.Drawing.Point(827, 465);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 21;
             this.label2.Text = "Country:";
             // 
             // Input_search
             // 
-            this.Input_search.Location = new System.Drawing.Point(687, 12);
+            this.Input_search.Location = new System.Drawing.Point(916, 15);
+            this.Input_search.Margin = new System.Windows.Forms.Padding(4);
             this.Input_search.Name = "Input_search";
-            this.Input_search.Size = new System.Drawing.Size(100, 20);
+            this.Input_search.Size = new System.Drawing.Size(132, 22);
             this.Input_search.TabIndex = 19;
+            this.Input_search.TextChanged += new System.EventHandler(this.Input_search_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(637, 15);
+            this.label1.Location = new System.Drawing.Point(849, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.Size = new System.Drawing.Size(53, 16);
             this.label1.TabIndex = 18;
             this.label1.Text = "Search:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(456, 378);
+            this.label3.Location = new System.Drawing.Point(608, 465);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 28;
             this.label3.Text = "Surname:";
             // 
             // Input_surname
             // 
-            this.Input_surname.Location = new System.Drawing.Point(514, 375);
+            this.Input_surname.Location = new System.Drawing.Point(685, 462);
+            this.Input_surname.Margin = new System.Windows.Forms.Padding(4);
             this.Input_surname.Name = "Input_surname";
-            this.Input_surname.Size = new System.Drawing.Size(100, 20);
+            this.Input_surname.Size = new System.Drawing.Size(132, 22);
             this.Input_surname.TabIndex = 27;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(306, 377);
+            this.label4.Location = new System.Drawing.Point(408, 464);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(47, 16);
             this.label4.TabIndex = 30;
             this.label4.Text = "Name:";
             // 
             // Input_name
             // 
-            this.Input_name.Location = new System.Drawing.Point(350, 375);
+            this.Input_name.Location = new System.Drawing.Point(467, 462);
+            this.Input_name.Margin = new System.Windows.Forms.Padding(4);
             this.Input_name.Name = "Input_name";
-            this.Input_name.Size = new System.Drawing.Size(100, 20);
+            this.Input_name.Size = new System.Drawing.Size(132, 22);
             this.Input_name.TabIndex = 29;
             // 
             // Select_country
             // 
             this.Select_country.FormattingEnabled = true;
-            this.Select_country.Location = new System.Drawing.Point(666, 374);
+            this.Select_country.Location = new System.Drawing.Point(888, 460);
+            this.Select_country.Margin = new System.Windows.Forms.Padding(4);
             this.Select_country.Name = "Select_country";
-            this.Select_country.Size = new System.Drawing.Size(121, 21);
+            this.Select_country.Size = new System.Drawing.Size(160, 24);
             this.Select_country.TabIndex = 31;
             // 
             // AuthorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 442);
+            this.ClientSize = new System.Drawing.Size(1065, 544);
             this.Controls.Add(this.Select_country);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Input_name);
@@ -176,6 +192,7 @@
             this.Controls.Add(this.Input_search);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AuthorForm";
             this.Text = "Author";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

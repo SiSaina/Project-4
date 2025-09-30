@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BookShop
@@ -7,6 +8,7 @@ namespace BookShop
     public partial class ThemeForm : Form
     {
         private DBconnect DBconnect;
+        private List<Theme> allThemes => GetThemes();
         public ThemeForm()
         {
             InitializeComponent();
@@ -112,6 +114,28 @@ namespace BookShop
             }
 
             return isValid;
+        }
+
+        private void Input_search_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = Input_search.Text.ToLower();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                dataGridView1.DataSource = allThemes;
+            }
+            else
+            {
+                if (searchText.Length > 5)
+                    searchText = searchText.Substring(0, 5);
+
+                var filtered = allThemes
+                    .Where(a =>
+                        (!string.IsNullOrEmpty(a.Name) && a.Name.ToLower().Contains(searchText)))
+                    .ToList();
+
+                dataGridView1.DataSource = filtered;
+            }
         }
     }
 }
