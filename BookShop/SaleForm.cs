@@ -28,27 +28,36 @@ namespace BookShop
         private void LoadData()
         {
             List<Sale> sales = DBconnect.ReadData<Sale>(reader => new Sale(reader), "Sales");
-            dataGridView1.DataSource = sales;
-            
-            if (dataGridView1.Columns["Price"] != null)
-            {
-                dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N2";
-            }
 
             BookForm bookForm = new BookForm();
             List<Book> books = bookForm.GetBooks();
+
+            ShopForm shopForm = new ShopForm();
+            List<Shop> shops = shopForm.GetShops();
+
+            foreach (var sale in sales)
+            {
+                var book = books.FirstOrDefault(b => b.Id == sale.BookId);
+                sale.BookName = book != null ? book.Name : "Unknown";
+
+                var shop = shops.FirstOrDefault(s => s.Id == sale.ShopId);
+                sale.ShopName = shop != null ? shop.Name : "Unknown";
+            }
+
+            dataGridView1.DataSource = sales;
+            if (dataGridView1.Columns["Price"] != null)
+                dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N2";
             Select_book.DataSource = books;
             Select_book.DisplayMember = "Name";
             Select_book.ValueMember = "Id";
 
-            ShopForm shopForm = new ShopForm();
-            List<Shop> shops = shopForm.GetShops();
             Select_shop.DataSource = shops;
             Select_shop.DisplayMember = "Name";
             Select_shop.ValueMember = "Id";
 
             clearText();
         }
+
         private void Insert_button_Click(object sender, EventArgs e)
         {
             if (validation(out decimal price, out int quantity, out DateTime saleDate, out Book book, out Shop shop))
@@ -196,6 +205,27 @@ namespace BookShop
                 .ToList();
 
             dataGridView1.DataSource = filtered;
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            Input_quantity.Text = row.Cells["Quantity"].Value?.ToString();
+            Input_price.Text = row.Cells["Price"].Value?.ToString();
+            
+            if (row.Cells["SaleDate"].Value != null && row.Cells["SaleDate"].Value is DateTime dt)
+                Select_date.Value = dt;
+            else
+                Select_date.Value = DateTime.Now;
+
+            if (int.TryParse(row.Cells["BookId"].Value?.ToString(), out int bookId))
+                Select_book.SelectedValue = bookId;
+
+            if (int.TryParse(row.Cells["ShopId"].Value?.ToString(), out int shopId))
+                Select_shop.SelectedValue = shopId;
         }
     }
 }

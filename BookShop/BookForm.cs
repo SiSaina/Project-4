@@ -23,21 +23,26 @@ namespace BookShop
         private void LoadData()
         {
             List<Book> books = DBconnect.ReadData<Book>(reader => new Book(reader), "Books");
-            dataGridView1.DataSource = books;
-
-            if (dataGridView1.Columns["Price"] != null)
-            {
-                dataGridView1.Columns["Price"].DefaultCellStyle.Format = "N2";
-            }
-
             AuthorForm authorForm = new AuthorForm();
             List<Author> authors = authorForm.GetAuthors();
+            ThemeForm themeForm = new ThemeForm();
+            List<Theme> themes = themeForm.GetThemes();
+
+            foreach (var book in books)
+            {
+                var author = authors.FirstOrDefault(a => a.Id == book.AuthorId);
+                book.AuthorName = author != null ? author.Name + " " + author.Surname : "Unknown";
+
+                var theme = themes.FirstOrDefault(t => t.Id == book.ThemeId);
+                book.ThemeName = theme != null ? theme.Name : "Unknown";
+            }
+
+            dataGridView1.DataSource = books;
+
             Select_author.DataSource = authors;
             Select_author.DisplayMember = "Name";
             Select_author.ValueMember = "Id";
 
-            ThemeForm themeForm = new ThemeForm();
-            List<Theme> themes = themeForm.GetThemes();
             Select_theme.DataSource = themes;
             Select_theme.DisplayMember = "Name";
             Select_theme.ValueMember = "Id";

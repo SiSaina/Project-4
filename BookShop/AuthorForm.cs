@@ -24,12 +24,17 @@ namespace BookShop
         private void LoadData()
         {
             List<Author> authors = DBconnect.ReadData<Author>(reader => new Author(reader), "Authors");
-            dataGridView1.DataSource = authors;
-
             CountryForm countryForm = new CountryForm();
-
             List<Country> countries = countryForm.GetCountries();
 
+            foreach (var author in authors)
+            {
+                var country = countries.FirstOrDefault(c => c.Id == author.CountryId);
+                author.CountryName = country != null ? country.Name : "Unknown";
+
+
+                dataGridView1.DataSource = authors;
+            }
             Select_country.DataSource = countries;
             Select_country.DisplayMember = "Name";
             Select_country.ValueMember = "Id";
@@ -172,8 +177,8 @@ namespace BookShop
                 var filtered = allAuthors
                     .Where(a =>
                         (!string.IsNullOrEmpty(a.Name) && a.Name.ToLower().StartsWith(searchText)) ||
-                        (!string.IsNullOrEmpty(a.Surname) && a.Surname.ToLower().StartsWith(searchText)))
-                    .ToList();
+                        (!string.IsNullOrEmpty(a.Surname) && a.Surname.ToLower().StartsWith(searchText))
+                    ).ToList();
 
                 dataGridView1.DataSource = filtered;
             }

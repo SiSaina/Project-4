@@ -16,7 +16,9 @@ namespace BookShop
         public decimal Price { get; set; }
         public DateTime PublishDate { get; set; }
         public int AuthorId { get; set; }
+        public string AuthorName { get; set; }
         public int ThemeId { get; set; }
+        public string ThemeName { get; set; }
         public Book() { }
         public Book(SqlDataReader Reader)
         {

@@ -51,7 +51,7 @@
             // Select_date
             // 
             this.Select_date.Location = new System.Drawing.Point(320, 458);
-            this.Select_date.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_date.Margin = new System.Windows.Forms.Padding(4);
             this.Select_date.Name = "Select_date";
             this.Select_date.Size = new System.Drawing.Size(265, 22);
             this.Select_date.TabIndex = 70;
@@ -60,7 +60,7 @@
             // 
             this.Select_shop.FormattingEnabled = true;
             this.Select_shop.Location = new System.Drawing.Point(888, 458);
-            this.Select_shop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_shop.Margin = new System.Windows.Forms.Padding(4);
             this.Select_shop.Name = "Select_shop";
             this.Select_shop.Size = new System.Drawing.Size(160, 24);
             this.Select_shop.TabIndex = 69;
@@ -78,7 +78,7 @@
             // Input_price
             // 
             this.Input_price.Location = new System.Drawing.Point(916, 426);
-            this.Input_price.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_price.Margin = new System.Windows.Forms.Padding(4);
             this.Input_price.Name = "Input_price";
             this.Input_price.Size = new System.Drawing.Size(132, 22);
             this.Input_price.TabIndex = 67;
@@ -107,7 +107,7 @@
             // 
             this.Select_book.FormattingEnabled = true;
             this.Select_book.Location = new System.Drawing.Point(657, 459);
-            this.Select_book.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_book.Margin = new System.Windows.Forms.Padding(4);
             this.Select_book.Name = "Select_book";
             this.Select_book.Size = new System.Drawing.Size(160, 24);
             this.Select_book.TabIndex = 64;
@@ -125,7 +125,7 @@
             // Input_quantity
             // 
             this.Input_quantity.Location = new System.Drawing.Point(713, 426);
-            this.Input_quantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_quantity.Margin = new System.Windows.Forms.Padding(4);
             this.Input_quantity.Name = "Input_quantity";
             this.Input_quantity.Size = new System.Drawing.Size(132, 22);
             this.Input_quantity.TabIndex = 60;
@@ -133,7 +133,7 @@
             // Delete_button
             // 
             this.Delete_button.Location = new System.Drawing.Point(916, 492);
-            this.Delete_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Delete_button.Margin = new System.Windows.Forms.Padding(4);
             this.Delete_button.Name = "Delete_button";
             this.Delete_button.Size = new System.Drawing.Size(133, 37);
             this.Delete_button.TabIndex = 59;
@@ -144,7 +144,7 @@
             // Update_button
             // 
             this.Update_button.Location = new System.Drawing.Point(775, 492);
-            this.Update_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update_button.Margin = new System.Windows.Forms.Padding(4);
             this.Update_button.Name = "Update_button";
             this.Update_button.Size = new System.Drawing.Size(133, 37);
             this.Update_button.TabIndex = 58;
@@ -155,7 +155,7 @@
             // Insert_button
             // 
             this.Insert_button.Location = new System.Drawing.Point(633, 492);
-            this.Insert_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Insert_button.Margin = new System.Windows.Forms.Padding(4);
             this.Insert_button.Name = "Insert_button";
             this.Insert_button.Size = new System.Drawing.Size(133, 37);
             this.Insert_button.TabIndex = 57;
@@ -166,7 +166,7 @@
             // Clear_button
             // 
             this.Clear_button.Location = new System.Drawing.Point(492, 492);
-            this.Clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Clear_button.Margin = new System.Windows.Forms.Padding(4);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(133, 37);
             this.Clear_button.TabIndex = 56;
@@ -178,11 +178,12 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 47);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1033, 370);
             this.dataGridView1.TabIndex = 55;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label2
             // 
@@ -235,7 +236,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SaleForm";
             this.Text = "Sale";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

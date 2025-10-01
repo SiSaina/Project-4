@@ -43,7 +43,7 @@
             // Delete_button
             // 
             this.Delete_button.Location = new System.Drawing.Point(916, 492);
-            this.Delete_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Delete_button.Margin = new System.Windows.Forms.Padding(4);
             this.Delete_button.Name = "Delete_button";
             this.Delete_button.Size = new System.Drawing.Size(133, 37);
             this.Delete_button.TabIndex = 17;
@@ -54,7 +54,7 @@
             // Update_button
             // 
             this.Update_button.Location = new System.Drawing.Point(775, 492);
-            this.Update_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update_button.Margin = new System.Windows.Forms.Padding(4);
             this.Update_button.Name = "Update_button";
             this.Update_button.Size = new System.Drawing.Size(133, 37);
             this.Update_button.TabIndex = 16;
@@ -65,7 +65,7 @@
             // Insert_button
             // 
             this.Insert_button.Location = new System.Drawing.Point(633, 492);
-            this.Insert_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Insert_button.Margin = new System.Windows.Forms.Padding(4);
             this.Insert_button.Name = "Insert_button";
             this.Insert_button.Size = new System.Drawing.Size(133, 37);
             this.Insert_button.TabIndex = 15;
@@ -76,7 +76,7 @@
             // Clear_button
             // 
             this.Clear_button.Location = new System.Drawing.Point(492, 492);
-            this.Clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Clear_button.Margin = new System.Windows.Forms.Padding(4);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(133, 37);
             this.Clear_button.TabIndex = 14;
@@ -88,11 +88,12 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 47);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1033, 406);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label2
             // 
@@ -107,7 +108,7 @@
             // Input_name
             // 
             this.Input_name.Location = new System.Drawing.Point(916, 460);
-            this.Input_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_name.Margin = new System.Windows.Forms.Padding(4);
             this.Input_name.Name = "Input_name";
             this.Input_name.Size = new System.Drawing.Size(132, 22);
             this.Input_name.TabIndex = 11;
@@ -115,7 +116,7 @@
             // Input_search
             // 
             this.Input_search.Location = new System.Drawing.Point(916, 15);
-            this.Input_search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_search.Margin = new System.Windows.Forms.Padding(4);
             this.Input_search.Name = "Input_search";
             this.Input_search.Size = new System.Drawing.Size(132, 22);
             this.Input_search.TabIndex = 10;
@@ -146,7 +147,7 @@
             this.Controls.Add(this.Input_search);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThemeForm";
             this.Text = "Theme";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -14,7 +14,9 @@ namespace BookShop
         public int Quantity { get; set; }
         public DateTime SaleDate { get; set; }
         public int BookId { get; set; }
+        public string BookName { get; set; }
         public int ShopId { get; set; }
+        public string ShopName { get; set; }
         public Sale() { }
         public Sale(SqlDataReader reader)
         {

@@ -28,17 +28,24 @@ namespace BookShop
         private void LoadData()
         {
             List<Shop> shops = DBconnect.ReadData<Shop>(reader => new Shop(reader), "Shops");
+            CountryForm countryForm = new CountryForm();
+            List<Country> countries = countryForm.GetCountries();
+            foreach (var shop in shops)
+            {
+                var country = countries.FirstOrDefault(c => c.Id == shop.CountryId);
+                shop.CountryName = country != null ? country.Name : "Unknown";
+            }
+
             dataGridView1.DataSource = shops;
 
-            CountryForm countryForm = new CountryForm();
-
-            List<Country> countries = countryForm.GetCountries();
 
             Select_country.DataSource = countries;
             Select_country.DisplayMember = "Name";
             Select_country.ValueMember = "Id";
+
             clearText();
         }
+
         private void Insert_button_Click(object sender, EventArgs e)
         {
             if (Validation(out string name, out Country selectedCountry))
@@ -164,6 +171,18 @@ namespace BookShop
 
                 dataGridView1.DataSource = filtered;
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            Input_name.Text = row.Cells["Name"].Value?.ToString();
+
+            int countryId = Convert.ToInt32(row.Cells["CountryId"].Value);
+            Select_country.SelectedValue = countryId;
         }
     }
 }
