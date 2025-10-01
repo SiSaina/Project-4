@@ -149,13 +149,11 @@ namespace BookShop
                 return;
 
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-
-            // Fill input fields
             Input_name.Text = row.Cells["Name"].Value?.ToString();
             Input_surname.Text = row.Cells["Surname"].Value?.ToString();
 
             int countryId = Convert.ToInt32(row.Cells["CountryId"].Value);
-            Select_country.SelectedValue = countryId; // works reliably
+            Select_country.SelectedValue = countryId;
         }
 
         private void Input_search_TextChanged(object sender, EventArgs e)

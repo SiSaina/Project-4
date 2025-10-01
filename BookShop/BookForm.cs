@@ -221,5 +221,26 @@ namespace BookShop
                 dataGridView1.DataSource = filtered;
             }
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            Input_name.Text = row.Cells["Name"].Value?.ToString();
+            Input_page.Text = row.Cells["Pages"].Value?.ToString();
+            Input_price.Text = row.Cells["Price"].Value?.ToString();
+
+            if (row.Cells["PublishDate"].Value != null && row.Cells["PublishDate"].Value is DateTime dt)
+                Select_date.Value = dt;
+            else
+                Select_date.Value = DateTime.Now;
+
+            if (int.TryParse(row.Cells["AuthorId"].Value?.ToString(), out int authorId))
+                Select_author.SelectedValue = authorId;
+            if (int.TryParse(row.Cells["ThemeId"].Value?.ToString(), out int themeId))
+                Select_theme.SelectedValue = themeId;
+        }
     }
 }

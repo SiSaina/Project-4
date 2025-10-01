@@ -139,5 +139,14 @@ namespace BookShop
                 dataGridView1.DataSource = filtered;
             }
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            Input_name.Text = row.Cells["Name"].Value?.ToString();
+        }
     }
 }

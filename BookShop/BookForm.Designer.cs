@@ -54,7 +54,7 @@
             // 
             this.Select_author.FormattingEnabled = true;
             this.Select_author.Location = new System.Drawing.Point(657, 459);
-            this.Select_author.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_author.Margin = new System.Windows.Forms.Padding(4);
             this.Select_author.Name = "Select_author";
             this.Select_author.Size = new System.Drawing.Size(160, 24);
             this.Select_author.TabIndex = 44;
@@ -72,7 +72,7 @@
             // Input_name
             // 
             this.Input_name.Location = new System.Drawing.Point(467, 426);
-            this.Input_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_name.Margin = new System.Windows.Forms.Padding(4);
             this.Input_name.Name = "Input_name";
             this.Input_name.Size = new System.Drawing.Size(176, 22);
             this.Input_name.TabIndex = 42;
@@ -90,7 +90,7 @@
             // Input_page
             // 
             this.Input_page.Location = new System.Drawing.Point(713, 426);
-            this.Input_page.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_page.Margin = new System.Windows.Forms.Padding(4);
             this.Input_page.Name = "Input_page";
             this.Input_page.Size = new System.Drawing.Size(132, 22);
             this.Input_page.TabIndex = 40;
@@ -98,7 +98,7 @@
             // Delete_button
             // 
             this.Delete_button.Location = new System.Drawing.Point(916, 492);
-            this.Delete_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Delete_button.Margin = new System.Windows.Forms.Padding(4);
             this.Delete_button.Name = "Delete_button";
             this.Delete_button.Size = new System.Drawing.Size(133, 37);
             this.Delete_button.TabIndex = 39;
@@ -109,7 +109,7 @@
             // Update_button
             // 
             this.Update_button.Location = new System.Drawing.Point(775, 492);
-            this.Update_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update_button.Margin = new System.Windows.Forms.Padding(4);
             this.Update_button.Name = "Update_button";
             this.Update_button.Size = new System.Drawing.Size(133, 37);
             this.Update_button.TabIndex = 38;
@@ -120,7 +120,7 @@
             // Insert_button
             // 
             this.Insert_button.Location = new System.Drawing.Point(633, 492);
-            this.Insert_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Insert_button.Margin = new System.Windows.Forms.Padding(4);
             this.Insert_button.Name = "Insert_button";
             this.Insert_button.Size = new System.Drawing.Size(133, 37);
             this.Insert_button.TabIndex = 37;
@@ -131,7 +131,7 @@
             // Clear_button
             // 
             this.Clear_button.Location = new System.Drawing.Point(492, 492);
-            this.Clear_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Clear_button.Margin = new System.Windows.Forms.Padding(4);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(133, 37);
             this.Clear_button.TabIndex = 36;
@@ -143,11 +143,12 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 47);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1033, 370);
             this.dataGridView1.TabIndex = 35;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label2
             // 
@@ -162,7 +163,7 @@
             // Input_search
             // 
             this.Input_search.Location = new System.Drawing.Point(916, 15);
-            this.Input_search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_search.Margin = new System.Windows.Forms.Padding(4);
             this.Input_search.Name = "Input_search";
             this.Input_search.Size = new System.Drawing.Size(132, 22);
             this.Input_search.TabIndex = 33;
@@ -182,7 +183,7 @@
             // 
             this.Select_theme.FormattingEnabled = true;
             this.Select_theme.Location = new System.Drawing.Point(888, 458);
-            this.Select_theme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_theme.Margin = new System.Windows.Forms.Padding(4);
             this.Select_theme.Name = "Select_theme";
             this.Select_theme.Size = new System.Drawing.Size(160, 24);
             this.Select_theme.TabIndex = 50;
@@ -200,7 +201,7 @@
             // Input_price
             // 
             this.Input_price.Location = new System.Drawing.Point(916, 426);
-            this.Input_price.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Input_price.Margin = new System.Windows.Forms.Padding(4);
             this.Input_price.Name = "Input_price";
             this.Input_price.Size = new System.Drawing.Size(132, 22);
             this.Input_price.TabIndex = 48;
@@ -228,7 +229,7 @@
             // Select_date
             // 
             this.Select_date.Location = new System.Drawing.Point(320, 458);
-            this.Select_date.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Select_date.Margin = new System.Windows.Forms.Padding(4);
             this.Select_date.Name = "Select_date";
             this.Select_date.Size = new System.Drawing.Size(265, 22);
             this.Select_date.TabIndex = 51;
@@ -258,7 +259,7 @@
             this.Controls.Add(this.Input_search);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BookForm";
             this.Text = "Book";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
