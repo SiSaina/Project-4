@@ -97,7 +97,7 @@ namespace BookShop
             }
         }
 
-        public void UpdateData<T>(T item, string tableName, string key)
+        public void UpdateData<T>(T item, string tableName, string key, string[] exclude = null)
         {
             SqlConnection sqlConnection = null;
             try
@@ -106,33 +106,38 @@ namespace BookShop
                 {
                     PropertyInfo[] properties = typeof(T).GetProperties();
 
-                    string setClause = string.Join(", ", properties.Where(p => p.Name != key).Select(p => $"{p.Name} = @{p.Name}"));
+                    var exProperties = exclude == null
+                        ? properties
+                        : properties.Where(p => !exclude.Contains(p.Name)).ToArray();
+
+                    string setClause = string.Join(", ", exProperties.Where(p => p.Name != key).Select(p => $"{p.Name} = @{p.Name}"));
 
                     string command = $"update {tableName} set {setClause} where {key} = @{key}";
 
                     using (SqlCommand sqlCommand = new SqlCommand(command, sqlConnection))
                     {
-                        foreach (var property in properties)
+                        foreach (var property in exProperties)
                         {
                             var value = property.GetValue(item);
                             sqlCommand.Parameters.AddWithValue("@" + property.Name, value ?? DBNull.Value);
                         }
 
                         var keyValue = typeof(T).GetProperty(key)?.GetValue(item);
-
-                        if(!sqlCommand.Parameters.Contains("@" + key))
+                        if (!sqlCommand.Parameters.Contains("@" + key))
                         {
                             sqlCommand.Parameters.AddWithValue("@" + key, keyValue ?? DBNull.Value);
                         }
+
                         sqlCommand.ExecuteNonQuery();
                     }
                 }
             }
-            finally 
+            finally
             {
                 sqlConnection?.Close();
             }
         }
+
 
         public void DeleteData(string tableName, string key, int value)
         {

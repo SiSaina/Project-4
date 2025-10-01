@@ -70,41 +70,36 @@ namespace BookShop
                     BookId = book.Id,
                     ShopId = shop.Id
                 };
-                DBconnect.InsertData(sale, "Sales", new[] { "Id" });
+                DBconnect.InsertData(sale, "Sales", new[] { "Id", "BookName", "ShopName" });
                 LoadData();
             }
         }
 
         private void Update_button_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Did you select the date correctly??", "Confirm update",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirm == DialogResult.Yes)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                if (dataGridView1.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Select a row to update");
-                    return;
-                }
-
-                DataGridViewRow row = dataGridView1.SelectedRows[0];
-
-                if (validation(out decimal price, out int quantity, out DateTime saleDate, out Book book, out Shop shop))
-                {
-                    Sale sale = new Sale()
-                    {
-                        Id = Convert.ToInt32(row.Cells["Id"].Value),
-                        Price = string.IsNullOrWhiteSpace(Input_price.Text) ? Convert.ToDecimal(row.Cells["Price"].Value) : decimal.Parse(Input_price.Text),
-                        Quantity = string.IsNullOrWhiteSpace(Input_quantity.Text) ? Convert.ToInt32(row.Cells["Quantity"].Value) : int.Parse(Input_quantity.Text),
-                        SaleDate = string.IsNullOrWhiteSpace(Select_date.Text) ? Convert.ToDateTime(row.Cells["SaleDate"].Value) : DateTime.Parse(Select_date.Text),
-                        BookId = Select_book.SelectedItem == null ? Convert.ToInt32(row.Cells["BookId"].Value) : ((Book)Select_book.SelectedItem).Id,
-                        ShopId = Select_shop.SelectedItem == null ? Convert.ToInt32(row.Cells["ShopId"].Value) : ((Shop)Select_shop.SelectedItem).Id
-                    };
-                    DBconnect.UpdateData(sale, "Sales", "Id");
-                    LoadData();
-                }
+                MessageBox.Show("Select a row to update");
+                return;
             }
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            if (validation(out decimal price, out int quantity, out DateTime saleDate, out Book book, out Shop shop))
+            {
+                Sale sale = new Sale()
+                {
+                    Id = Convert.ToInt32(row.Cells["Id"].Value),
+                    Price = string.IsNullOrWhiteSpace(Input_price.Text) ? Convert.ToDecimal(row.Cells["Price"].Value) : decimal.Parse(Input_price.Text),
+                    Quantity = string.IsNullOrWhiteSpace(Input_quantity.Text) ? Convert.ToInt32(row.Cells["Quantity"].Value) : int.Parse(Input_quantity.Text),
+                    SaleDate = string.IsNullOrWhiteSpace(Select_date.Text) ? Convert.ToDateTime(row.Cells["SaleDate"].Value) : DateTime.Parse(Select_date.Text),
+                    BookId = Select_book.SelectedItem == null ? Convert.ToInt32(row.Cells["BookId"].Value) : ((Book)Select_book.SelectedItem).Id,
+                    ShopId = Select_shop.SelectedItem == null ? Convert.ToInt32(row.Cells["ShopId"].Value) : ((Shop)Select_shop.SelectedItem).Id
+                };
+                DBconnect.UpdateData(sale, "Sales", "Id", new string[] { "BookName", "ShopName" });
+                LoadData();
+            }
+            
         }
 
         private void Delete_button_Click(object sender, EventArgs e)

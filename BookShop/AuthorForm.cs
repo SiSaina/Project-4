@@ -51,7 +51,7 @@ namespace BookShop
                     CountryId = selectedCountry.Id
                 };
 
-                DBconnect.InsertData(author, "Authors", new[] { "Id" });
+                DBconnect.InsertData(author, "Authors", new[] { "Id", "CountryName" });
                 LoadData();
             }
         }
@@ -76,7 +76,7 @@ namespace BookShop
                     CountryId = selectedCountry.Id
                 };
 
-                DBconnect.UpdateData(author, "Authors", "Id");
+                DBconnect.UpdateData(author, "Authors", "Id", new string[] { "CountryName" });
                 LoadData();
             }
         }

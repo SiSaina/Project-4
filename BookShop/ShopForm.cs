@@ -56,7 +56,7 @@ namespace BookShop
                     CountryId = selectedCountry.Id
                 };
 
-                DBconnect.InsertData(shop, "Shops", new[] { "Id" });
+                DBconnect.InsertData(shop, "Shops", new[] { "Id", "CountryName" });
                 LoadData();
             }
         }
@@ -88,7 +88,7 @@ namespace BookShop
                     CountryId = Select_country.SelectedItem == null ? Convert.ToInt32(row.Cells["CountryId"].Value) : selectedCountry.Id
                 };
 
-                DBconnect.UpdateData(shop, "Shops", "Id");
+                DBconnect.UpdateData(shop, "Shops", "Id", new string[] { "CountryName" });
                 LoadData();
             }
         }

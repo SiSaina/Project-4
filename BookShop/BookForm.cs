@@ -62,44 +62,39 @@ namespace BookShop
                     AuthorId = author.Id,
                     ThemeId = theme.Id
                 };
-                DBconnect.InsertData(book, "Books", new[] { "Id" });
+                DBconnect.InsertData(book, "Books", new[] { "Id", "AuthorName", "ThemeName" });
                 LoadData();
             }
         }
 
         private void Update_button_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Did you select the date correctly??", "Confirm update",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirm == DialogResult.Yes)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
-                if (dataGridView1.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Select a row to update");
-                    return;
-                }
+                MessageBox.Show("Select a row to update");
+                return;
+            }
 
-                DataGridViewRow row = dataGridView1.SelectedRows[0];
-                int bookId = Convert.ToInt32(row.Cells["Id"].Value);
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int bookId = Convert.ToInt32(row.Cells["Id"].Value);
 
-                if (Validation(out string name, out int pages, out decimal price, out DateTime publishDate, out Author author, out Theme theme))
+            if (Validation(out string name, out int pages, out decimal price, out DateTime publishDate, out Author author, out Theme theme))
+            {
+                Book book = new Book
                 {
-                    Book book = new Book
-                    {
-                        Id = bookId,
-                        Name = string.IsNullOrWhiteSpace(Input_name.Text) ? row.Cells["Name"].Value.ToString() : name,
-                        Pages = string.IsNullOrWhiteSpace(Input_page.Text) ? Convert.ToInt32(row.Cells["Pages"].Value) : pages,
-                        Price = string.IsNullOrWhiteSpace(Input_price.Text) ? Convert.ToDecimal(row.Cells["Price"].Value) : price,
-                        PublishDate = string.IsNullOrWhiteSpace(Select_date.Text) ? Convert.ToDateTime(row.Cells["PublishDate"].Value) : publishDate,
-                        AuthorId = author.Id,
-                        ThemeId = theme.Id
-                    };
-                    DBconnect.UpdateData(book, "Books", "Id");
-                    LoadData();
-                }
+                    Id = bookId,
+                    Name = string.IsNullOrWhiteSpace(Input_name.Text) ? row.Cells["Name"].Value.ToString() : name,
+                    Pages = string.IsNullOrWhiteSpace(Input_page.Text) ? Convert.ToInt32(row.Cells["Pages"].Value) : pages,
+                    Price = string.IsNullOrWhiteSpace(Input_price.Text) ? Convert.ToDecimal(row.Cells["Price"].Value) : price,
+                    PublishDate = string.IsNullOrWhiteSpace(Select_date.Text) ? Convert.ToDateTime(row.Cells["PublishDate"].Value) : publishDate,
+                    AuthorId = author.Id,
+                    ThemeId = theme.Id
+                };
+                DBconnect.UpdateData(book, "Books", "Id", new string[] { "AuthorName", "ThemeName" });
+                LoadData();
             }
         }
+        
 
         private void Delete_button_Click(object sender, EventArgs e)
         {
@@ -138,7 +133,6 @@ namespace BookShop
         }
         private bool Validation(out string name, out int pages, out decimal price, out DateTime publishDate, out Author authorId, out Theme themeId)
         {
-            // Initialize output variables
             name = string.Empty;
             pages = 0;
             price = 0;
